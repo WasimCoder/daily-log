@@ -1,0 +1,67 @@
+<header>
+  <div class="title">
+    <img src="/assets/images/veryx_logo.png" alt="">
+    <h1>Daily Log Form</h1>
+    <div class="date">
+      <p>Date : {{date}}</p>
+    </div>
+  </div>
+</header>
+<div class="wrapper">
+  <form action="POST">
+    <div>
+    <label for="">Task Description:</label>
+    <textarea [(ngModel)]="newTask.task" name="task" id="" cols="30" rows="10"></textarea>
+  </div>
+  <div>
+    <label for="">Effort Spent:</label>
+    <input [(ngModel)]="newTask.effort" name="effort" type="text">
+  </div>
+  <div>
+    <label for="">Start Date:</label>
+    <input [(ngModel)]="newTask.start" name="start" type="Date">
+  </div>
+  <div>
+    <label for="">End Date:</label>
+    <input [(ngModel)]="newTask.end" name="end" type="Date">
+  </div>
+  <div>
+    <label for="">Status:</label>
+    <input [(ngModel)]="newTask.status" name="status" type="text">
+  </div>
+  <div>
+    <label for="">Remark: </label>
+    <textarea [(ngModel)]="newTask.remark" name="remark" id="" cols="30" rows="10"></textarea>
+  </div>
+  </form>
+</div>
+<div class="form-button"><button (click)="saveTasks()"> Generate</button>
+  <button (click)="addTask()"> Create new +</button></div>
+
+<table id="table">
+  <thead>
+    <th>S.No</th>
+    <th>Task Description</th>
+    <th>Effort Spent</th>
+    <th>Start Time</th>
+    <th>End Time</th>
+    <th>Status</th>
+    <th>Remarks</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let t of tasks; let i = index" >
+      <td>{{i+1}}</td>
+      <td>{{t.task}}</td>
+      <td>{{t.effort}}</td>
+      <td>{{t.start}}</td>
+      <td>{{t.end}}</td>
+      <td>{{t.status}}</td>
+      <td>{{t.remark}}</td>
+      <button (click)="editTask(i)" >edit</button>
+      <button (click)="deleteTask(i)">delete</button>
+    </tr>
+  </tbody>
+</table>
+<!--Under Testing <div class="copy-button">
+  <button (click)="copyTable()">Copy Table</button>
+</div> -->
