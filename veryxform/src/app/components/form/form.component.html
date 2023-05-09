@@ -19,15 +19,19 @@
   </div>
   <div>
     <label for="">Start Date:</label>
-    <input [(ngModel)]="newTask.start" name="start" type="Date">
+    <input [(ngModel)]="newTask.start" name="start" value={{start}} type="Date">
   </div>
   <div>
     <label for="">End Date:</label>
-    <input [(ngModel)]="newTask.end" name="end" type="Date">
+    <input [(ngModel)]="newTask.end" name="end" value={{end}} type="Date">
   </div>
   <div>
     <label for="">Status:</label>
-    <input [(ngModel)]="newTask.status" name="status" type="text">
+    <select [value]="status"  [(ngModel)]="newTask.status" name="Choose" id="" >
+      <option default value="">Pick one</option>
+      <option *ngFor="let option of options" >{{option}}</option>
+    </select>
+    <!-- <input  name="status" type="text"> -->
   </div>
   <div>
     <label for="">Remark: </label>
@@ -35,8 +39,11 @@
   </div>
   </form>
 </div>
-<div class="form-button"><button (click)="saveTasks()">Save</button>
-  <button (click)="addTask()">Add + </button></div>
+<div class="form-button">
+  <button (click)="addTask()">Add</button>
+  <button (click)="saveTasks()">Save</button>
+</div>
+  
 
 <table id="table">
   <thead>
@@ -53,8 +60,8 @@
       <td>{{i+1}}</td>
       <td>{{t.task}}</td>
       <td>{{t.effort}}</td>
-      <td>{{t.start}}</td>
-      <td>{{t.end}}</td>
+      <td>{{dateReverse(t.start)}}</td>
+      <td>{{dateReverse(t.end)}}</td>
       <td>{{t.status}}</td>
       <td>{{t.remark}}</td>
       <button (click)="editTask(i)" >edit</button>
@@ -62,6 +69,6 @@
     </tr>
   </tbody>
 </table>
-<!--Under Testing <div class="copy-button">
+<!--Under testing <div class="copy-button">
   <button (click)="copyTable()">Copy Table</button>
 </div> -->
